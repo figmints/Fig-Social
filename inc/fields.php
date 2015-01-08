@@ -1,7 +1,7 @@
 <?php
 class FigTwitFields {
 	public static function init() {
-		self::fields();
+		add_action( 'init', array( 'FigTwitFields', 'fields' ), 999 );
 	}
 
 	public static function fields() {
