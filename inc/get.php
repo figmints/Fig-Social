@@ -29,14 +29,18 @@ class FigTwit_Get {
 	}
 
 	private function map_obj( $tweets ) {
+
 		$tweet = array();
-		$tweet['content']      = ( isset( $tweets->text ) )       ? $tweets->text : '';
-		$tweet['date']         = ( isset( $tweets->created_at ) ) ? $tweets->created_at : '';
+		$tweet['content']       = ( isset( $tweets->text ) )                    ? $tweets->text : '';
+		$tweet['date']          = ( isset( $tweets->created_at ) )              ? $tweets->created_at : '';
+		$tweet['profile_image'] = ( isset( $tweets->user->profile_image_url ) ) ? $tweets->user->profile_image_url : '';
 
 		return (object) $tweet;
+
 	}
 
 	public function save() {
+
 		$tweets = $this::get_tweets();
 		$processedTweets = array();
 
@@ -44,7 +48,9 @@ class FigTwit_Get {
 			$tweetObj = $this::map_obj( $tweet );
 			$processedTweets[] = $tweetObj;
 		}
+
 		return $processedTweets;
+
 	}
 
 }
