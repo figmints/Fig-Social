@@ -4,7 +4,7 @@ Plugin Name: Fig Social
 Plugin URI: https://github.com/figmints/Fig-Social
 Description: Social plugin.
 Author: Ryan Kanner @ Figmints Delicious Design
-Version: 1.0.1
+Version: 1.0.2
 Author Email: ryan@figmints.com
 License: GPL v2 or newer
 */
