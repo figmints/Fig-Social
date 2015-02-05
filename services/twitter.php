@@ -1,20 +1,20 @@
 <?php
-namespace FigTwit\Inc;
+namespace FigSocial\service;
 
-class FigTwit_Get {
+class FigSocialTwitter {
 
 	protected static $endpoint = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+	protected static $consumerKey = 'Htly8vttySJ6xj3cMaLm6qrwQ';
+	protected static $consumerSecret = 'YZolGF641QmgB8SulyhVEz0djohk9bfF15E4dS9uL8feMhIB3o';
+	protected static $accessToken = '506782653-oqlhkESVk4DW1ilxN5JuWIYUOH9h6KWWwqpdtjNJ';
+	protected static $accessTokenSecret = '3Vm1m0ZpSAVxF38CHroD7Zejwp4yHsF7q0LMeK2o2w735';
 
 	private function get_tweets() {
 		require_once( dirname(dirname(__FILE__)) . "/twitteroauth/twitteroauth/twitteroauth.php");
 
-		$consumerkey = get_field( 'consumer_key', 'options' );
-		$consumersecret = get_field( 'consumer_secret', 'options' );
-		$accesstoken = get_field( 'access_token', 'options' );
-		$accesstokensecret = get_field( 'access_token_secret', 'options' );
 		$username = get_field( 'twitter_handle', 'options' );
 
-		$connection = new \TwitterOAuth( $consumerkey, $consumersecret, $accesstoken, $accesstokensecret );
+		$connection = new \TwitterOAuth( self::$consumerKey, self::$consumerSecret, self::$accessToken, self::$accessTokenSecret );
 
 		$count = apply_filters( 'fig_tweet_count', 10 );
 		$url = add_query_arg(

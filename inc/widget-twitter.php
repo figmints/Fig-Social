@@ -16,7 +16,7 @@ class FigTwit_Widget extends WP_Widget {
 		}
 
 		$template = $instance['template'];
-		$tweets = get_transient( 'figtwit_tweets' );
+		$tweets = get_transient( 'figsocial_twitter' );
 		$limit = $instance['limit'];
 		$i = 1;
 
@@ -29,15 +29,15 @@ class FigTwit_Widget extends WP_Widget {
 				if ( $i <= $limit ) {
 
 					$date = new Datetime($tweet->date);
-					$contentFunc = new \FigTwit\Inc\FigTwitGeneral(); //instantiate general functions for our use
+					$contentFunc = new \FigSocial\Inc\FigSocialGeneral(); //instantiate general functions for our use
 					$content = $contentFunc->linkify($tweet->content);
 
 					if ( $template == 'default' ) {
-						include dirname(dirname(__FILE__)) . '/views/front_end.php';
+						include dirname(dirname(__FILE__)) . '/views/twitter.php';
 					} elseif ( file_exists( get_stylesheet_directory() . '/overrides/twitter/' . $template) ) {
 						include ( get_stylesheet_directory() . '/overrides/twitter/' . $template );
 					} else {
-						include dirname(dirname(__FILE__)) . '/views/front_end.php';
+						include dirname(dirname(__FILE__)) . '/views/twitter.php';
 					}
 
 					$i++;
